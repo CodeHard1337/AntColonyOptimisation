@@ -1,4 +1,4 @@
-# AntColonyOptimisation
+# Ant Colony Optimisation
 
 Ant Colony Optimisation is a solution to the traveling salesman problem (TSP). TSP is a problem where a path needs to be found between different waypoints. This may sound easy to do, but without any optimisations, finding the shortest path possible has a complexity of O(n!). This means that for just 20 waypoints, it may already take a few hundred years to find the optimal solution.
 
