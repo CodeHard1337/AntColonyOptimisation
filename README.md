@@ -9,36 +9,38 @@ Ant Colony Optimisation shortens the calculation time by a lot (but does not gar
 
 The ant will need to find a semi-random path on the graph, so it will be dropped on a random waypoint.
 
-ant_start.png
+<img src="Readme%20Images/ant_start.png" width="250">
 
 It will then need to choose what waypoint it will visit next. It does this by looking at two things: the distance to the waypoint, and the amount of pheremones left by other ants.
 
-ant_distance.png ant_pheremones.png
+<img src="Readme%20Images/ant_distance.png" width="250">
+<img src="Readme%20Images/ant_pheremones.png" width="250">
 
-The ant adds up those two measurements (scaled with the settings, so it may take the pheremones more into account than the distance).
+The ant adds up those two measurements (scaled with the settings, so it may take the pheremones more into account than the distance or vice versa).
 
-ant_distance_pheremones.png
+<img src="Readme%20Images/ant_distance_pheremones.png" width="250">
 
 It then uses this result as a probability for choosing the next waypoint.
 
-ant_next_waypoint.png
+<img src="Readme%20Images/ant_next_waypoint.png" width="250">
 
 This process gets repeated until the ant has visited every waypoint. After that, the ant goes back to its starting position.
 
-ant_path.png
+<img src="Readme%20Images/ant_path.png" width="250">
 
 It looks at the path it took, and calculates the distance. It then leaves pheremones along the path inversely proportional to that distance. This will encourage other ants to follow this path if it is short, or discourage them if it is long.
 
-ant_path_pheremones.png
+<img src="Readme%20Images/ant_path_pheremones.png" width="250">
 
 ### Step 2: Calculating iterations
 
-One iteration consists of multiple ants looking for a path independently of each other. The pheremones that were already there first evaporate a bit. Then all the ants from this iteration calculate their path, and add their pheremones. After that if we found a shorter path than the one already saved, it gets saved instead. This gets done a set amount of times, after which we will hopefully have a good path.
+One iteration consists of multiple ants looking for a path independently of each other. The pheremones that were already there first evaporate a bit. Then all the ants from this iteration calculate their path, and add their pheremones. After that, if we found a shorter path than the one already saved, it gets saved instead. This gets done a set amount of times, after which we will hopefully have a good path.
 
 ### Step 3: 2-OPT optimisation (optional)
 
 When the path is fully calculated by the ants there may still be some parts that cross over each other, which is obviously not the shortest possible route. 2-OPT tries to eliminate those cross-overs. For each possible combination of two nodes it switches their possition in the path.
 
-2_opt_before.png 2_opt_after.png
+<img src="Readme%20Images/2_opt_before.png" width="250">
+<img src="Readme%20Images/2_opt_after.png" width="250">
 
 If the resulting path is shorter, it gets saved. This gets repeated a set amount of times, at the end of which we will have a path that is shorter than the ants alone could have calculated.
